@@ -65,3 +65,32 @@ Add-Computer -DomainName xyz.com -Credential xyz\Administrator -Force -Restart
 ```
 
 Links: https://github.com/WazeHell/vulnerable-AD
+
+
+## STEPS
+On the Domain Manager run the random_domain.ps1
+Create a cred object
+```powershell
+$cred = (Get-Credentials)
+```
+
+Create a Session Object
+```powershell
+$dc = New-PSSession 192.168.91.128 -Credential $cred
+```
+
+Copy the gen_ad.ps1 and  outputted json file from random_domain.ps1
+```powershell
+PS C:\Users\local_admin\active_directory> Copy .\out.json -ToSession $dc c:\Windows\Tasks
+PS C:\Users\local_admin\active_directory> Copy .\gen_ad.ps1 -ToSession $dc c:\Windows\Tasks
+PS C:\Users\local_admin\active_directory> Enter-PSSession $dc
+
+```
+
+Execute the script
+```powershell
+[192.168.91.128]: PS C:\Windows\Tasks> .\gen_ad.ps1 .\out.json
+```
+
+
+3. 

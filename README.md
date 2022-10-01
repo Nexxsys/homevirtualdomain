@@ -91,6 +91,3 @@ Execute the script
 ```powershell
 [192.168.91.128]: PS C:\Windows\Tasks> .\gen_ad.ps1 .\out.json
 ```
-
-
-3. 
